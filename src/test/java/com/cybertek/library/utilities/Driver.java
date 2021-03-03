@@ -4,7 +4,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
@@ -19,6 +22,16 @@ public class Driver {
             String browser = ConfigurationReader.getProperty("browser");
 
             switch (browser) {
+                case "remote-chrome":
+                    try {
+                        URL url = new URL("http://52.3.253.48:4444/wd/hub");
+                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                        desiredCapabilities.setBrowserName("chrome");
+                        driver = new RemoteWebDriver(url, desiredCapabilities);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
