@@ -18,10 +18,11 @@ Feature: Login with parameters
     Then books should be displayed
 #number can be whatever you have there
 
-  @wip
+
   Scenario: Login as librarian same line
     Given I am on the login page
-    When I login using "librarian12@library" and "AOYKYTMJ"
+    When I login using "librarian49@library" and "xHdfRYuD"
     Then dashboard should be displayed
 
 #number can be whatever you have there
+  #12-AOYKYTMJ

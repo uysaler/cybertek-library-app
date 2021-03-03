@@ -2,6 +2,7 @@ package com.cybertek.library.step_definitions;
 
 import com.cybertek.library.pages.LandingPage;
 import com.cybertek.library.pages.LoginPage;
+import com.cybertek.library.utilities.BrowserUtils;
 import com.cybertek.library.utilities.ConfigurationReader;
 import com.cybertek.library.utilities.Driver;
 import io.cucumber.java.en.Given;
@@ -62,15 +63,15 @@ public class Login_StepDefinitions {
 
     }
     @When("I enter username {string}")
-    public void i_enter_username(String string1) {
-    String username=string1;
+    public void i_enter_username(String username) {
+
         loginPage.usernameInput.sendKeys(username);
     }
 
 
     @When("I enter password {string}")
-    public void i_enter_password(String string2) {
-    String password=string2;
+    public void i_enter_password(String password) {
+
         loginPage.passwordInput.sendKeys(password);
     }
     @When("click the sign in button")
@@ -90,7 +91,23 @@ public class Login_StepDefinitions {
     @When("I login using {string} and {string}")
     public void iLoginUsingAnd(String username ,String password) {
         loginPage.usernameInput.sendKeys(username);
+        BrowserUtils.sleep(2);
         loginPage.passwordInput.sendKeys(password);
+        BrowserUtils.sleep(2);
         loginPage.signInButton.click();
+        BrowserUtils.sleep(2);
     }
+
+    @Then("account holder name should be {string}")
+    public void accountHolderNameShouldBe(String expectedAccountUsername) {
+        BrowserUtils.waitForVisibility(landingPage.accountUsername,5);
+        String actualAccountUsername = landingPage.accountUsername.getText();
+
+        Assert.assertEquals( "Actual username is not as expected!", expectedAccountUsername, actualAccountUsername);
+
+        Driver.closeDriver();
+    }
+
+
+
 }

@@ -19,5 +19,7 @@ public abstract class PageBase {
     @FindBy(linkText="Dashboard")
     public WebElement dashboardPageLink;
 
+    @FindBy(xpath = "//a[@id='navbarDropdown']/span")
+    public WebElement accountUsername;
 
 }

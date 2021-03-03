@@ -45,8 +45,10 @@ public class PageNavigation_StepDefinitions {
 
     }
 
+
+
     @Then("show records should have following options")
-    public void show_records_should_have_following_options(List<String>options) {
+    public void show_records_should_have_following_options(List<String> options) {
       // System.out.println("options size = " + options.size());
        // System.out.println("options = " + options);
         select =new Select(usersPage.showRecordsDropdown);
@@ -54,6 +56,8 @@ public class PageNavigation_StepDefinitions {
        List<String> actualTexts=BrowserUtils.getElementsText(webElements);
        Assert.assertEquals(options,actualTexts);
     }
+
+
 
 
 
